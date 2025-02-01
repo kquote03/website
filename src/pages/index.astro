@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Home Page";
+---
+
+<style>
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  .title h1 {
+    font-family: "Tiny5";
+  }
+  p {
+    height: 40vh;
+    font-size: 80px;
+    opacity: 20%;
+    align-self: center;
+  }
+</style>
+
+<>
+  <div class="title"><h1>kQuote's Home</h1></div>
+  <BaseLayout pageTitle={pageTitle}>
+    <p>PLACEHOLDER</p>
+  </BaseLayout>
+</>

@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@font-face {
+  font-family: fa-brands;
+  src: url(../assets/webfonts/fa-brands-400.woff2);
+}
+
+html {
+  background-color: #f1f5f9;
+  background-color: #d9edff;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80ch;
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 1rem 0;
+  font-size: 2.5rem;
+}
