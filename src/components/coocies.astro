@@ -99,7 +99,7 @@ const { containerWidth, containerHeight } = Astro.props;
     // config.devicePixelRatio = 1;
 
     alert("Coocies not support phone :(.... pls use desktop/laptop");
-    return;
+    throw new Error("Coocies not supported :(");
   } else {
     // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
     //canvas.style.width = "600px";
