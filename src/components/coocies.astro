@@ -85,6 +85,7 @@ const { containerWidth, containerHeight } = Astro.props;
 
   if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
     // Mobile device style: fill the whole browser client area with the game canvas:
+
     //var meta = document.createElement("meta");
     //meta.name = "viewport";
     //meta.content =
@@ -92,9 +93,13 @@ const { containerWidth, containerHeight } = Astro.props;
     //document.getElementsByTagName("head")[0].appendChild(meta);
     //document.querySelector("#unity-container").className = "unity-mobile";
     //canvas.className = "unity-mobile";
+
     // To lower canvas resolution on mobile devices to gain some
     // performance, uncomment the following line:
     // config.devicePixelRatio = 1;
+
+    alert("Coocies not support phone :(.... pls use desktop/laptop");
+    return;
   } else {
     // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
     //canvas.style.width = "600px";
