@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Coocies from "../components/coocies.astro";
 const pageTitle = "Home Page";
 ---
 
@@ -12,16 +13,24 @@ const pageTitle = "Home Page";
     font-family: "Tiny5";
   }
   p {
-    height: 40vh;
     font-size: 5vw;
     opacity: 20%;
     align-self: center;
+  }
+  .unity-test {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 </style>
 
 <>
   <div class="title"><h1>kQuote's Home</h1></div>
   <BaseLayout pageTitle={pageTitle}>
-    <p>PLACEHOLDER</p>
+    <div class="unity-test">
+      <p>COOCIES???</p>
+      <Coocies />
+    </div>
   </BaseLayout>
 </>
