@@ -1,0 +1,140 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/global.css";
+---
+
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+
+<BaseLayout>
+  <div id="search" class="search-container"></div>
+</BaseLayout>
+
+<style is:global>
+  /* Search container */
+  .search-container {
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  /* Pagefind UI overrides */
+  .pagefind-ui {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: var(--arrow-color);
+    --pagefind-ui-text: var(--text-color);
+    --pagefind-ui-background: var(--card-bg);
+    --pagefind-ui-border: var(--border-color);
+    --pagefind-ui-tag: var(--hover-bg);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 12px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-font: "IBM Plex Sans", sans-serif;
+    align-items: center;
+  }
+
+  .pagefind-ui__search-bar {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .pagefind-ui__search-input {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 12px !important;
+    width: 100%;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+
+  /* Hide clear button */
+  .pagefind-ui__search-clear {
+    display: none !important;
+  }
+
+  .pagefind-ui__results-area {
+    width: 100%;
+    list-style-type: none;
+  }
+
+  .pagefind-ui__result {
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+    background-color: var(--card-bg);
+    list-style-type: none;
+    list-style-position: inside;
+  }
+  .pagefind-ui__results {
+    padding: 0px;
+  }
+  .pagefind-ui__result:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-hover-shadow);
+  }
+
+  .pagefind-ui__result-title {
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .pagefind-ui__result-excerpt {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .pagefind-ui__result-link {
+    color: var(--arrow-color);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 0.75rem;
+  }
+
+  .pagefind-ui__result-link:hover::after {
+    transform: translateY(2px);
+  }
+
+  .pagefind-ui__message {
+    color: var(--text-muted);
+    padding: 1rem;
+    text-align: center;
+  }
+</style>
+
+<script>
+  // @ts-expect-error
+  import { PagefindUI } from "@pagefind/default-ui";
+  window.addEventListener("DOMContentLoaded", () => {
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      autofocus: true,
+      showEmptyFilters: false,
+    });
+    const el = document.querySelector(".pagefind-ui");
+    const input = el?.querySelector<HTMLInputElement>(`input[type="text"]`);
+    // Check if the current URL has any query params
+    const url = new URL(window.location.href);
+    const params = new URLSearchParams(url.search);
+    const query = params.get("q");
+
+    // If query exists on page load
+    if (query && input) {
+      input.value = query;
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    input?.addEventListener("input", (e) => {
+      const input = e.target as HTMLInputElement;
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      params.set("q", input.value);
+      window.history.replaceState({}, "", `${url.pathname}?${params}`);
+    });
+  });
+</script>
