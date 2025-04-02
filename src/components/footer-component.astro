@@ -11,8 +11,18 @@
   a {
     font-family: "fa-brands";
     font-size: larger;
-    color: black;
+    color: var(--text-color); /* Now adapts to light/dark mode */
     text-decoration: none;
+  }
+  /* Dark mode specific adjustments */
+  @media (prefers-color-scheme: dark) {
+    footer a {
+      color: #e2e8f0; /* Slightly brighter for better visibility in dark mode */
+    }
+
+    footer > * {
+      opacity: 80%; /* Slightly more visible in dark mode */
+    }
   }
 </style>
 

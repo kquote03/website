@@ -1,6 +1,10 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import "../styles/recent-posts.css";
 const pageTitle = "Home Page";
+const allPosts = Object.values(
+  import.meta.glob("./posts/*.md", { eager: true })
+);
 ---
 
 <style>
@@ -11,17 +15,22 @@ const pageTitle = "Home Page";
   .title h1 {
     font-family: "Tiny5";
   }
-  p {
-    height: 40vh;
-    font-size: 5vw;
-    opacity: 20%;
-    align-self: center;
-  }
 </style>
 
 <>
   <div class="title"><h1>kQuote's Home</h1></div>
   <BaseLayout pageTitle={pageTitle}>
-    <p>PLACEHOLDER</p>
+    <div class="recent-posts">
+      <h2>Recent posts</h2>
+      <ul>
+        {
+          allPosts.slice(0, 5).map((post: any) => (
+            <li>
+              <a href={post.url}>{post.frontmatter.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </BaseLayout>
 </>

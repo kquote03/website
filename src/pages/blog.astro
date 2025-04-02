@@ -1,22 +1,26 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import "../styles/global.css";
+import "../styles/recent-posts.css";
+import "../styles/subtitle.css";
 const allPosts = Object.values(
   import.meta.glob("./posts/*.md", { eager: true })
 );
 ---
 
 <BaseLayout>
-  <h1>My Blog.</h1>
-  <p>The actual Blog. :D</p>
+  <div class="subtitle"><h1>My Blog</h1></div>
+  <p>* Warning. May contain lethal doses of sarcasm.</p>
 
-  <ul>
-    {
-      allPosts.map((post: any) => (
-        <li>
-          <a href={post.url}>{post.frontmatter.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="recent-posts">
+    <ul>
+      {
+        allPosts.map((post: any) => (
+          <li>
+            <a href={post.url}>{post.frontmatter.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </BaseLayout>

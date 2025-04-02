@@ -1,12 +1,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Tiny5&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap");
 @font-face {
   font-family: fa-brands;
   src: url(../assets/webfonts/fa-brands-400.woff2);
 }
 
+:root {
+  /* Light mode colors */
+  --bg-color: #d9edff;
+  --text-color: #1a1a1a;
+  --card-bg: white;
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --border-color: #f0f0f0;
+  --hover-bg: #f8f8f8;
+  --link-color: #333;
+  --arrow-color: #6b46c1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode colors */
+    --bg-color: #0f172a;
+    --text-color: #f8fafc;
+    --card-bg: #1e293b;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --border-color: #334155;
+    --hover-bg: #334155;
+    --link-color: #e2e8f0;
+    --arrow-color: #a78bfa;
+  }
+}
+
 html {
-  background-color: #f1f5f9;
-  background-color: #d9edff;
+  background-color: var(--bg-color);
   font-family: sans-serif;
 }
 
@@ -16,10 +42,12 @@ body {
   max-width: 80ch;
   padding: 1rem;
   line-height: 1.5;
+  color: var(--text-color);
 }
 
 * {
   box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
 h1 {
